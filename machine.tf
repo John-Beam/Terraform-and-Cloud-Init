@@ -9,7 +9,7 @@
 }*/
 
 variable "description" {
-  default = "ptaf-4.0.4.2806-1166-71.qcow"
+  default = "ptaf-4.0.5.2964-1329-107-config"
 
 }
 
@@ -90,13 +90,13 @@ resource "aws_instance" "ptaf4" {
                 password: positive
                 chpasswd: { expire: False }
                 ssh_pwauth: True                
-              EOF
+              EOF*/
   ebs_block_device {
           delete_on_termination = true
-          #iops                  = 500
+          #iops                  = 320
           encrypted             = false
-          device_name           = "ebs_${var.description}_${count.index+1}"
-          #volume_type           = "st2"
-        }*/
+          device_name           = "disk1" #DriveFor_${var.description}_${count.index+1}
+          volume_type           = "gp2"
+        }
 
 }

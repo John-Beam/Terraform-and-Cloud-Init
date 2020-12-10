@@ -16,7 +16,7 @@ variable "C2_PROJECT" {
 
 variable "ptaf_node_id" {
   type    = string
-  default = "cmi-14C5AA17" /**/
+  default = "cmi-00F8AEF7" /**/
 }
 
 variable "ptaf_node_instance_type" {
