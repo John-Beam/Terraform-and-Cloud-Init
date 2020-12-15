@@ -1,18 +1,18 @@
 #cloud-config
 runcmd:
   - export HOME=/root
-  - CLUSTER_IP=192.168.1.168
-  - MGMT_IP=10.0.1.65
-  - LAN_IP=192.168.2.168
+  - CLUSTER_IP=192.168.1.201
+  - MGMT_IP=10.0.1.201
+  - LAN_IP=192.168.2.201
   - FQDN=`hostname -f`
   - HOSTNAME=`hostname -s`
   - sed -i "s/^127.0.1.1/127.0.1.1 $HOSTNAME $FQDN/" /etc/hosts
   - wsc -c "if set eth0 role WAN"
   - wsc -c "if mode eth0 dhcp"
   - wsc -c "if mode eth1 static"
-  - wsc -c "if set eth1 inet_address $CLUSTER_IP inet_netmask 255.255.255.0 inet_gateway none"
+  - wsc -c "if set eth1 inet_address $MGMT_IP inet_netmask 255.255.255.0 inet_gateway none"
   - wsc -c "if mode eth2 static"
-  - wsc -c "if set eth2 inet_address $MGMT_IP inet_netmask 255.255.255.0 inet_gateway none"
+  - wsc -c "if set eth2 inet_address $CLUSTER_IP inet_netmask 255.255.255.0 inet_gateway none"
   - wsc -c "if mode eth3 static"
   - wsc -c "if set eth3 inet_address $LAN_IP inet_netmask 255.255.255.0 inet_gateway none"
   - wsc -c "vip set monitoring $MGMT_IP"
